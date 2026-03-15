@@ -1,0 +1,74 @@
+============================================================
+KNOWLEDGE GRAPH DIAGNOSTIC REPORT
+============================================================
+
+--- Executive Summary ---
+Overall health score: 16.3/100
+Total bottleneck edges: 34
+Multi-hop vulnerability: 100.0%
+
+--- Top Bottlenecks ---
+  1. Project Beta --[depends_on]--> Project Delta (curvature=-0.167, impact=0.2081)
+  2. ML Team --[depends_on]--> Project Beta (curvature=-0.524, impact=0.2003)
+  3. Frontend Team --[depends_on]--> Project Delta (curvature=-0.417, impact=0.1939)
+  4. Security Team --[depends_on]--> Project Alpha (curvature=-0.596, impact=0.1917)
+  5. ML Team --[depends_on]--> Project Alpha (curvature=-0.500, impact=0.1650)
+  6. Frank --[leads]--> Backend Team (curvature=-0.425, impact=0.1108)
+  7. Data Team --[depends_on]--> Project Beta (curvature=-0.524, impact=0.1079)
+  8. DevOps Team --[depends_on]--> Project Alpha (curvature=-0.417, impact=0.0947)
+  9. Project Alpha --[depends_on]--> Project Gamma (curvature=-0.292, impact=0.0879)
+  10. ML Team --[works_in]--> Bridge Person (curvature=-0.393, impact=0.0853)
+
+--- Bridge Entities at Risk ---
+  - ML Team (Team): curvature=-0.184, betweenness=0.0084
+  - Project Alpha (Project): curvature=-0.451, betweenness=0.0053
+  - Data Team (Team): curvature=-0.108, betweenness=0.0052
+  - Project Beta (Project): curvature=-0.405, betweenness=0.0051
+  - Backend Team (Team): curvature=-0.166, betweenness=0.0047
+  - DevOps Team (Team): curvature=-0.112, betweenness=0.0041
+  - Project Delta (Project): curvature=-0.292, betweenness=0.0040
+  - HQ (Location): curvature=-0.162, betweenness=0.0027
+  - Frank (Person): curvature=-0.106, betweenness=0.0022
+  - Python (Technology): curvature=-0.383, betweenness=0.0020
+
+--- Knowledge Islands ---
+  Cluster 0: 22 nodes, 7 bottleneck edges to rest
+  Cluster 1: 8 nodes, 5 bottleneck edges to rest
+  Cluster 2: 13 nodes, 2 bottleneck edges to rest
+  Cluster 3: 11 nodes, 5 bottleneck edges to rest
+  Cluster 4: 2 nodes, 2 bottleneck edges to rest
+  Cluster 5: 11 nodes, 3 bottleneck edges to rest
+  Cluster 6: 1 nodes, 4 bottleneck edges to rest
+  Cluster 7: 2 nodes, 3 bottleneck edges to rest
+  Cluster 8: 2 nodes, 3 bottleneck edges to rest
+  Cluster 9: 1 nodes, 3 bottleneck edges to rest
+  Cluster 10: 1 nodes, 2 bottleneck edges to rest
+  Cluster 11: 1 nodes, 2 bottleneck edges to rest
+  Cluster 12: 4 nodes, 3 bottleneck edges to rest
+  Cluster 13: 1 nodes, 2 bottleneck edges to rest
+
+--- Multi-Hop Reasoning Analysis ---
+  Sampled paths with bottleneck: 100.0%
+  Overall reachability score: 0.769
+
+--- Recommended Fixes ---
+  - Add edge: Alice --[leads]--> DevOps Team (priority=low)
+  - Add edge: Alice --[leads]--> Project Alpha (priority=low)
+  - Add edge: Alice --[leads]--> Project Beta (priority=low)
+  - Add edge: Alice --[leads]--> Python (priority=low)
+  - Add edge: Alice --[leads]--> HQ (priority=high)
+  - Add edge: Bob --[works_in]--> Dave (priority=low)
+  - Add edge: Bob --[works_in]--> Project Alpha (priority=low)
+  - Add edge: Bob --[works_in]--> Project Beta (priority=low)
+  - Add edge: Bob --[works_in]--> Python (priority=low)
+  - Add edge: Bob --[works_in]--> HQ (priority=high)
+  - Add edge: Bob --[works_in]--> Bridge Person (priority=low)
+  - Add edge: Dave --[leads]--> ML Team (priority=low)
+  - Add edge: Dave --[leads]--> Project Alpha (priority=low)
+  - Add edge: Dave --[leads]--> AWS (priority=low)
+  - Add edge: Dave --[leads]--> Cloud DC1 (priority=low)
+
+--- Expected Impact ---
+  Expected improvement after rewiring: 7.42
+
+============================================================

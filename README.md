@@ -65,6 +65,47 @@ jupyter notebook notebooks/exploration.ipynb
 
 The notebook walks through dataset loading, curvature computation on a subgraph, bottleneck visualization, and before/after rewiring comparison with markdown explanations.
 
+## Knowledge Graph Debugger
+
+The **Knowledge Graph Debugger** is a practical application that uses the same curvature analysis to find and fix weak connections in knowledge graphs that block multi-hop reasoning. It identifies bottleneck edges (negative Ollivier-Ricci curvature), bridge entities that are single points of failure, and suggests new edges to improve reachability and reasoning.
+
+**Who it's for:** Researchers, knowledge engineers, and anyone building or maintaining knowledge graphs who want to diagnose connectivity issues and improve multi-hop query performance.
+
+### Quick start
+
+```bash
+# Run the full pipeline on the built-in sample KG (stats, curvature, bottlenecks, fixes, report, figures)
+python demo_kg.py
+
+# Launch the interactive Streamlit dashboard
+streamlit run app.py
+```
+
+### Screenshot
+
+*[Screenshot placeholder: Streamlit dashboard with Overview tab showing KG stats, health score, and graph visualization.]*
+
+### Supported input formats
+
+- **CSV/TSV triples**: Columns `head`, `relation`, `tail` (or similar).
+- **JSON**: `{"entities": [...], "relations": [...]}` with entity `id`, `label`, `type` and relation `head`, `tail`, `relation`.
+- **FB15k-237**: Subset of the Freebase benchmark via PyTorch Geometric (optional).
+- **WN18RR**: Subset of the WordNet benchmark via PyTorch Geometric (optional).
+- **Built-in sample**: A small tech-company KG with ~80 entities and ~150 relations and intentional bottlenecks.
+
+### Example output
+
+- **Bottleneck table** (top bottlenecks by impact and curvature):
+
+  | Source    | Relation        | Target   | Curvature | Impact |
+  |-----------|-----------------|----------|-----------|--------|
+  | Bridge_Person | works_in    | ML_Team  | -0.24     | 0.052  |
+  | DevOps_Lead   | reports_to | Bridge_Person | -0.21 | 0.048  |
+
+- **Health score**: Overall score 0–100 (e.g. 72/100), with higher values indicating fewer bottlenecks and better multi-hop connectivity.
+
+Results and figures are written to `results/` (e.g. `kg_diagnostic_report.txt`, `kg_diagnostic_report.md`) and `figures/` (e.g. `kg_overview.png`, `kg_health_dashboard.png`).
+
 ## References
 
 1. **Topping et al. (2022)**. "Understanding Over-Squashing and Bottlenecks on Graphs via Curvature." *ICLR 2022*.
